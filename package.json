@@ -1,0 +1,23 @@
+{
+  "name": "ec2-secgroup-update",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules index.ts",
+    "build": "tsc && cp -R package.json node_modules build",
+    "postbuild": "cd build && zip -r index.zip index.js package.json node_modules",
+    "deploy": "aws lambda update-function-code --function-name update-secgroup-ec2 --zip-file fileb://build/index.zip"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1377.0",
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.2",
+    "ts-node-dev": "^2.0.0"
+  }
+}
